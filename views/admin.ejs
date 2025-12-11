@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Админ – Точки за гласање</title>
+</head>
+<body>
+  <h1>Админ панел – Точки за гласање</h1>
+
+  <h2>Додади нова точка</h2>
+
+  <form method="POST" action="/admin/motion">
+    <input type="text" name="title" placeholder="Назив на точка..." size="60" required>
+    <button type="submit">Додади</button>
+  </form>
+
+  <h2>Постоечки точки</h2>
+
+  <% if (motions.length === 0) { %>
+    <p>Нема внесени точки.</p>
+  <% } else { %>
+    <ol>
+      <% motions.forEach(function(m) { %>
+        <li>
+          ID: <%= m.id %> – <%= m.title %>
+          | <a href="/results?motionId=<%= m.id %>">Резултати</a>
+          | <a href="/report/<%= m.id %>">PDF извештај</a>
+        </li>
+      <% }); %>
+    </ol>
+  <% } %>
+
+  <br>
+  <a href="/vote">Оди на страницата за гласање</a>
+</body>
+</html>
+<p>
+    <a href="/reset" style="color:red; font-weight:bold;">
+        РЕСЕТИРАЈ ГО СИСТЕМОТ (брише сите точки и гласови)
+    </a>
+</p>
