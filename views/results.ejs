@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Резултати</title>
+</head>
+<body>
+  <h1>Резултати за: <%= motion.title %></h1>
+
+  <p>За: <%= counts.za %></p>
+  <p>Против: <%= counts.protiv %></p>
+  <p>Воздржани: <%= counts.vozdrzan %></p>
+
+  <h2>Поединечни гласови:</h2>
+  <ul>
+    <% detailed.forEach(v => { %>
+      <li><strong><%= v.name %>:</strong> <%= v.choice %></li>
+    <% }); %>
+  </ul>
+
+  <br>
+  <a href="/report/<%= motion.id %>">📄 Преземи PDF извештај за оваа точка</a>
+  <br><br>
+  <a href="/vote">Назад на гласање</a> |
+  <a href="/admin">Админ панел</a>
+</body>
+</html>
