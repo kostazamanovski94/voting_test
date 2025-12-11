@@ -144,9 +144,12 @@ app.get("/report/:motionId", (req, res) => {
 });
 
 // --- Старт ---
-app.listen(3000, () => {
-  console.log("Системот за гласање работи на http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Системот за гласање работи на портата: ${PORT}`);
 });
+
 // =======================
 // RESET SYSTEM (ADMIN)
 // =======================
@@ -160,3 +163,4 @@ app.get("/reset", (req, res) => {
     <p><a href="/admin">Назад кон админ панел</a></p>
   `);
 });
+
