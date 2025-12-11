@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Гласање</title>
+</head>
+<body>
+  <h1>Гласање</h1>
+
+  <% if (motions.length === 0) { %>
+    <p><strong>Нема активни точки за гласање.</strong></p>
+    <a href="/admin">Оди во админ панел</a>
+  <% } else { %>
+
+  <form method="POST" action="/vote">
+    <div>
+      <label>Советник:</label>
+      <select name="councilorId" required>
+        <% councilors.forEach(c => { %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <br>
+
+    <div>
+      <label>Точка:</label>
+      <select name="motionId" required>
+        <% motions.forEach(m => { %>
+          <option value="<%= m.id %>"><%= m.title %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <br>
+
+    <div>
+      <label>Глас:</label><br>
+      <!-- Важно: name="vote" и вредности За/Против/Воздржан, како во server.js -->
+      <label><input type="radio" name="vote" value="За" required> За</label><br>
+      <label><input type="radio" name="vote" value="Против"> Против</label><br>
+      <label><input type="radio" name="vote" value="Воздржан"> Воздржан</label>
+    </div>
+
+    <br>
+    <button type="submit">Гласај</button>
+  </form>
+
+  <% } %>
+
+  <br>
+  <a href="/admin">Админ панел</a>
+</body>
+</html>
